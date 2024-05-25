@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-// MARK: - TextField
+// MARK: - AuthenticationTextField
 
 final class AuthenticationTextField: UITextField {
     
@@ -58,7 +58,7 @@ final class AuthenticationTextField: UITextField {
     }
 }
 
-// MARK: - Button
+// MARK: - UIButton + Extension
 
 extension UIButton {
     func authenticationButton(title: String) {

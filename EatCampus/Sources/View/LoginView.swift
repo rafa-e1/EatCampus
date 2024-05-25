@@ -101,6 +101,8 @@ final class LoginView: UIView {
     }
 }
 
+// MARK: - UITextFieldDelegate
+
 extension LoginView: UITextFieldDelegate {
     private func configureTextFieldDelegate() {
         emailTextField.delegate = self
