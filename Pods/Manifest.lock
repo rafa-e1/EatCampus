@@ -1,0 +1,28 @@
+PODS:
+  - SnapKit (5.7.1)
+  - Then (3.0.0)
+
+DEPENDENCIES:
+  - SnapKit (from `https://github.com/SnapKit/SnapKit.git`)
+  - Then
+
+SPEC REPOS:
+  trunk:
+    - Then
+
+EXTERNAL SOURCES:
+  SnapKit:
+    :git: https://github.com/SnapKit/SnapKit.git
+
+CHECKOUT OPTIONS:
+  SnapKit:
+    :commit: 2842e6e84e82eb9a8dac0100ca90d9444b0307f4
+    :git: https://github.com/SnapKit/SnapKit.git
+
+SPEC CHECKSUMS:
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+  Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
+
+PODFILE CHECKSUM: 6d11c060ea86fb2b62d5c1618d65d6dbb88cede8
+
+COCOAPODS: 1.14.3
