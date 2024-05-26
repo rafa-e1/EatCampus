@@ -18,6 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
+        
+        let isDarkModeEnabled = UserDefaults.standard.bool(forKey: "DarkModeEnabled")
+        for window in windowScene.windows {
+            window.overrideUserInterfaceStyle = isDarkModeEnabled ? .dark : .light
+        }
+        
         window?.rootViewController = MainTabBarController()
         window?.backgroundColor = .background
         window?.makeKeyAndVisible()

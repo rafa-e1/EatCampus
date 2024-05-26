@@ -35,6 +35,8 @@
 		050F8F392C03378B003B7820 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F382C03378B003B7820 /* ProfileCell.swift */; };
 		050F8F3D2C033F02003B7820 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F3C2C033F02003B7820 /* ProfileHeader.swift */; };
 		050F8F3F2C034075003B7820 /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F3E2C034075003B7820 /* ProfileHeaderViewModel.swift */; };
+		050F8F412C0393FC003B7820 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F402C0393FC003B7820 /* SettingViewModel.swift */; };
+		050F8F432C039426003B7820 /* DarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F422C039426003B7820 /* DarkMode.swift */; };
 		10D1233BDF8605EE3769FEEE /* Pods_EatCampus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D71C7B36177800E38F46B96 /* Pods_EatCampus.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +71,8 @@
 		050F8F382C03378B003B7820 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		050F8F3C2C033F02003B7820 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		050F8F3E2C034075003B7820 /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
+		050F8F402C0393FC003B7820 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		050F8F422C039426003B7820 /* DarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkMode.swift; sourceTree = "<group>"; };
 		3D71C7B36177800E38F46B96 /* Pods_EatCampus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EatCampus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E8CD1EC92FB255576ABBB64 /* Pods-EatCampus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EatCampus.release.xcconfig"; path = "Target Support Files/Pods-EatCampus/Pods-EatCampus.release.xcconfig"; sourceTree = "<group>"; };
 		FD90F24EA534CF337DC540FB /* Pods-EatCampus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EatCampus.debug.xcconfig"; path = "Target Support Files/Pods-EatCampus/Pods-EatCampus.debug.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 			children = (
 				050F8F142C0305A8003B7820 /* AuthenticationViewModel.swift */,
 				050F8F3E2C034075003B7820 /* ProfileHeaderViewModel.swift */,
+				050F8F402C0393FC003B7820 /* SettingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				050F8F202C033174003B7820 /* User.swift */,
+				050F8F422C039426003B7820 /* DarkMode.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -345,11 +351,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050F8F432C039426003B7820 /* DarkMode.swift in Sources */,
 				050F8F372C033471003B7820 /* Vibration.swift in Sources */,
 				050F8F312C033450003B7820 /* NowController.swift in Sources */,
 				050F8F2F2C03343E003B7820 /* SettingController.swift in Sources */,
 				050F8F392C03378B003B7820 /* ProfileCell.swift in Sources */,
 				050F8F232C03329D003B7820 /* UserService.swift in Sources */,
+				050F8F412C0393FC003B7820 /* SettingViewModel.swift in Sources */,
 				050F8F3F2C034075003B7820 /* ProfileHeaderViewModel.swift in Sources */,
 				050F8F212C033174003B7820 /* User.swift in Sources */,
 				050F8F132C02F2BE003B7820 /* RegistrationController.swift in Sources */,

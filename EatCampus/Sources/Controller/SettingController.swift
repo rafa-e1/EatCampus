@@ -13,18 +13,36 @@ import Then
 
 final class SettingController: UIViewController {
     
+    let darkModeSwitchToggleButton = UISwitch()
+    
     let logoutButton = UIButton(type: .system).then {
         $0.setTitle("로그아웃", for: .normal)
     }
     
+    let viewModel = SettingViewModel(darkMode: DarkMode())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        darkModeSwitchToggleButton.addTarget(self, action: #selector(handleDarkModeSwitchToggle), for: .valueChanged)
         logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+        
+        view.addSubview(darkModeSwitchToggleButton)
         view.addSubview(logoutButton)
-        logoutButton.snp.makeConstraints {
+        
+        darkModeSwitchToggleButton.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
+        
+        logoutButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(darkModeSwitchToggleButton.snp.bottom)
+        }
+    }
+    
+    @objc private func handleDarkModeSwitchToggle(_ sender: UISwitch) {
+        viewModel.toggleDarkMode(animated: true)
+        darkModeSwitchToggleButton.isOn = viewModel.isDarkModeEnabled
     }
     
     @objc private func logoutButtonTapped() {
