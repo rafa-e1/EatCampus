@@ -16,8 +16,8 @@ final class LoginView: UIView {
     
     private let appNameLabel = UILabel()
     
-    private let emailTextField = AuthenticationTextField(placeholder: "이메일", isSecure: false)
-    private let passwordTextField = AuthenticationTextField(placeholder: "비밀번호", isSecure: true)
+    let emailTextField = AuthenticationTextField(placeholder: "이메일", isSecure: false)
+    let passwordTextField = AuthenticationTextField(placeholder: "비밀번호", isSecure: true)
     private let textFields = UIStackView()
     
     let loginButton = UIButton(type: .system)

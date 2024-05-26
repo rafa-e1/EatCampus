@@ -20,6 +20,9 @@ final class AuthenticationTextField: UITextField {
         
         configureTextField(with: placeholder, isSecure: isSecure)
         setupLeftView()
+        if isSecure {
+            setupRightView()
+        }
         applyStyles()
     }
     
@@ -27,9 +30,29 @@ final class AuthenticationTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override var isSecureTextEntry: Bool {
+        didSet {
+            if isFirstResponder {
+                _ = becomeFirstResponder()
+            }
+        }
+    }
+    
+    @discardableResult
+    override func becomeFirstResponder() -> Bool {
+        let success = super.becomeFirstResponder()
+        if isSecureTextEntry, let text = self.text {
+            self.text?.removeAll()
+            insertText(text)
+        }
+        
+        return success
+    }
+    
     // MARK: Configuration
     
     private func configureTextField(with placeholder: String, isSecure: Bool) {
+        textContentType = .none
         spellCheckingType = .no
         autocorrectionType = .no
         autocapitalizationType = .none
@@ -46,6 +69,21 @@ final class AuthenticationTextField: UITextField {
         leftViewMode = .always
     }
     
+    private func setupRightView() {
+        let eyeButton = UIButton(type: .system)
+        eyeButton.tintColor = .label
+        
+        var config = UIButton.Configuration.plain()
+        config.image = UIImage(systemName: "eye.slash")
+        config.imagePadding = 10
+        
+        eyeButton.configuration = config
+        eyeButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        
+        rightView = eyeButton
+        rightViewMode = .always
+    }
+    
     private func applyStyles() {
         textColor = .label
         tintColor = .label
@@ -55,6 +93,14 @@ final class AuthenticationTextField: UITextField {
         keyboardType = .emailAddress
         backgroundColor = .textFieldBackground
         snp.makeConstraints { $0.height.equalTo(50) }
+    }
+    
+    @objc private func togglePasswordVisibility() {
+        isSecureTextEntry.toggle()
+        if let eyeButton = rightView as? UIButton {
+            let icon = isSecureTextEntry ? "eye.slash" : "eye"
+            eyeButton.setImage(UIImage(systemName: icon), for: .normal)
+        }
     }
 }
 

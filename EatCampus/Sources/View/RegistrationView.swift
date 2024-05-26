@@ -14,15 +14,15 @@ final class RegistrationView: UIView {
     
     // MARK: - Properties
     
-    private var profileImage: UIImage?
     private let addPhotoButton = UIButton(type: .system)
     
-    private let nicknameTextField = AuthenticationTextField(placeholder: "닉네임", isSecure: false)
-    private let fullnameTextField = AuthenticationTextField(placeholder: "이름", isSecure: false)
+    let nicknameTextField = AuthenticationTextField(placeholder: "닉네임", isSecure: false)
+    let fullnameTextField = AuthenticationTextField(placeholder: "이름", isSecure: false)
     private let nameStackView = UIStackView()
     
-    private let emailTextField = AuthenticationTextField(placeholder: "이메일", isSecure: false)
-    private let passwordTextField = AuthenticationTextField(placeholder: "비밀번호", isSecure: true)
+    let emailTextField = AuthenticationTextField(placeholder: "이메일", isSecure: false)
+    let passwordTextField = AuthenticationTextField(placeholder: "비밀번호", isSecure: true)
+    let confirmPasswordTextField = AuthenticationTextField(placeholder: "비밀번호 확인", isSecure: true)
     let signUpButton = UIButton(type: .system)
     private let credentialsStackView = UIStackView()
     
@@ -80,6 +80,7 @@ final class RegistrationView: UIView {
             $0.spacing = 10
             $0.addArrangedSubview(emailTextField)
             $0.addArrangedSubview(passwordTextField)
+            $0.addArrangedSubview(confirmPasswordTextField)
             $0.addArrangedSubview(signUpButton)
             addSubview($0)
         }
