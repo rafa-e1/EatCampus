@@ -14,6 +14,7 @@ final class RegistrationController: UIViewController {
     private let registrationView = RegistrationView()
     private var viewModel = RegistrationViewModel()
     private var profileImage: UIImage?
+    weak var delegate: AuthenticationDelegate?
     
     // MARK: - Lifecycle
     
@@ -61,10 +62,41 @@ final class RegistrationController: UIViewController {
         updateForm()
     }
     
+    @objc private func signUpButtonTapped() {
+        guard let profileImage = self.profileImage else { return }
+        guard let nickname = registrationView.nicknameTextField.text else { return }
+        guard let fullname = registrationView.fullnameTextField.text else { return }
+        guard let email = registrationView.emailTextField.text else { return }
+        guard let password = registrationView.passwordTextField.text else { return }
+        
+        let credentials = AuthCredentials(
+            profileImage: profileImage,
+            nickname: nickname,
+            fullname: fullname,
+            email: email,
+            password: password
+        )
+        
+        AuthService.registerUser(withCredential: credentials) { error in
+            if let error = error {
+                print("DEBUG: Failed to register user: \(error.localizedDescription)")
+                return
+            }
+            
+            self.delegate?.authenticationDidComplete()
+        }
+    }
+    
     private func setButtonActions() {
         registrationView.addPhotoButton.addTarget(
             self,
             action: #selector(handleProfilePhotoSelect),
+            for: .touchUpInside
+        )
+        
+        registrationView.signUpButton.addTarget(
+            self,
+            action: #selector(signUpButtonTapped),
             for: .touchUpInside
         )
     }

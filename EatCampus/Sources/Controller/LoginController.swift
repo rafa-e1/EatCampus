@@ -7,12 +7,17 @@
 
 import UIKit
 
+protocol AuthenticationDelegate: AnyObject {
+    func authenticationDidComplete()
+}
+
 final class LoginController: UIViewController {
     
     // MARK: - Properties
     
     private let loginView = LoginView()
     private var viewModel = LoginViewModel()
+    weak var delegate: AuthenticationDelegate?
     
     // MARK: - Lifecycle
     
@@ -82,7 +87,17 @@ final class LoginController: UIViewController {
     }
     
     @objc private func loginButtonTapped() {
+        guard let email = loginView.emailTextField.text else { return }
+        guard let password = loginView.passwordTextField.text else { return }
         
+        AuthService.logUserIn(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("DEBUG: Failed to register user: \(error.localizedDescription)")
+                return
+            }
+            
+            self.delegate?.authenticationDidComplete()
+        }
     }
     
     @objc private func resetPasswordButtonTapped() {
@@ -91,6 +106,7 @@ final class LoginController: UIViewController {
     
     @objc private func createAccountButtonTapped() {
         let controller = RegistrationController()
+        controller.delegate = delegate
         navigationController?.pushViewController(controller, animated: true)
     }
 }
