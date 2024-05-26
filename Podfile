@@ -8,4 +8,7 @@ target 'EatCampus' do
   # Pods for EatCampus
   pod 'SnapKit', :git => 'https://github.com/SnapKit/SnapKit.git'
   pod 'Then'
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
+
 end

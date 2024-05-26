@@ -18,6 +18,7 @@
 		050F8F112C02F2B3003B7820 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F102C02F2B3003B7820 /* RegistrationView.swift */; };
 		050F8F132C02F2BE003B7820 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F122C02F2BE003B7820 /* RegistrationController.swift */; };
 		050F8F152C0305A8003B7820 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F142C0305A8003B7820 /* AuthenticationViewModel.swift */; };
+		050F8F172C032528003B7820 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 050F8F162C032528003B7820 /* GoogleService-Info.plist */; };
 		10D1233BDF8605EE3769FEEE /* Pods_EatCampus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D71C7B36177800E38F46B96 /* Pods_EatCampus.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		050F8F102C02F2B3003B7820 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		050F8F122C02F2BE003B7820 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		050F8F142C0305A8003B7820 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		050F8F162C032528003B7820 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D71C7B36177800E38F46B96 /* Pods_EatCampus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EatCampus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E8CD1EC92FB255576ABBB64 /* Pods-EatCampus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EatCampus.release.xcconfig"; path = "Target Support Files/Pods-EatCampus/Pods-EatCampus.release.xcconfig"; sourceTree = "<group>"; };
 		FD90F24EA534CF337DC540FB /* Pods-EatCampus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EatCampus.debug.xcconfig"; path = "Target Support Files/Pods-EatCampus/Pods-EatCampus.debug.xcconfig"; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				050F8EF72C021CDC003B7820 /* Info.plist */,
+				050F8F162C032528003B7820 /* GoogleService-Info.plist */,
 				050F8EFE2C021D2E003B7820 /* Sources */,
 				050F8EFD2C021D24003B7820 /* Resources */,
 			);
@@ -239,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				050F8F0B2C021DE2003B7820 /* Colors.xcassets in Resources */,
+				050F8F172C032528003B7820 /* GoogleService-Info.plist in Resources */,
 				050F8EF32C021CDC003B7820 /* Assets.xcassets in Resources */,
 				050F8EF62C021CDC003B7820 /* Base in Resources */,
 			);
