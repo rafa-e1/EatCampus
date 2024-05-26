@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Kingfisher
+
 final class ProfileHeader: UICollectionReusableView {
     
     // MARK: - Properties
@@ -75,13 +77,9 @@ final class ProfileHeader: UICollectionReusableView {
         guard let viewModel = viewModel else { return }
         
         if let url = viewModel.profileImageURL {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                guard let data = data, error == nil else { return }
-                
-                DispatchQueue.main.async {
-                    self.profileImageView.image = UIImage(data: data)
-                }
-            }.resume()
+            profileImageView.kf.setImage(
+                with: url, options: [.processor(DefaultImageProcessor.default)]
+            )
         }
         
         fullnameLabel.text = viewModel.fullname
