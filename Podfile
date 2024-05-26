@@ -10,5 +10,5 @@ target 'EatCampus' do
   pod 'Then'
   pod 'FirebaseAuth'
   pod 'FirebaseFirestore'
-
+  pod 'FirebaseStorage'
 end
