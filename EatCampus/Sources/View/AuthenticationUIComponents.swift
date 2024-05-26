@@ -52,11 +52,13 @@ final class AuthenticationTextField: UITextField {
     // MARK: Configuration
     
     private func configureTextField(with placeholder: String, isSecure: Bool) {
-        textContentType = .none
         spellCheckingType = .no
         autocorrectionType = .no
         autocapitalizationType = .none
         self.isSecureTextEntry = isSecure
+        if isSecure {
+            textContentType = .newPassword
+        }
         attributedPlaceholder = NSAttributedString(
             string: placeholder,
             attributes: [.foregroundColor: UIColor.systemGray]
