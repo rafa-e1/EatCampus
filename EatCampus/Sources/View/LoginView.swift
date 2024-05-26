@@ -24,6 +24,8 @@ final class LoginView: UIView {
     let resetPasswordButton = UIButton(type: .system)
     let createAccountButton = UIButton(type: .system)
     
+    let activityIndicator = UIActivityIndicatorView(style: .medium)
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -45,6 +47,8 @@ final class LoginView: UIView {
     // MARK: - Setup Views
     
     private func setupUI() {
+        backgroundColor = .background
+        
         appNameLabel.do {
             $0.text = "맛집족보"
             $0.textAlignment = .center
@@ -80,6 +84,12 @@ final class LoginView: UIView {
             )
             addSubview($0)
         }
+        
+        activityIndicator.do {
+            $0.color = .systemYellow
+            $0.hidesWhenStopped = true
+            addSubview($0)
+        }
     }
     
     private func setupConstraints() {
@@ -97,6 +107,10 @@ final class LoginView: UIView {
         createAccountButton.snp.makeConstraints {
             $0.centerX.left.equalTo(textFields)
             $0.bottom.equalTo(keyboardLayoutGuide.snp.top)
+        }
+        
+        activityIndicator.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
     }
 }

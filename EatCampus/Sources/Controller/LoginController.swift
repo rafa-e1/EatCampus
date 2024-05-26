@@ -90,6 +90,8 @@ final class LoginController: UIViewController {
         guard let email = loginView.emailTextField.text else { return }
         guard let password = loginView.passwordTextField.text else { return }
         
+        showLoadingIndicator(true)
+        
         AuthService.logUserIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 print("DEBUG: Failed to register user: \(error.localizedDescription)")
@@ -108,6 +110,16 @@ final class LoginController: UIViewController {
         let controller = RegistrationController()
         controller.delegate = delegate
         navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    private func showLoadingIndicator(_ show: Bool) {
+        UIView.animate(withDuration: 0.2) {
+            if show {
+                self.loginView.activityIndicator.startAnimating()
+            } else {
+                self.loginView.activityIndicator.stopAnimating()
+            }
+        }
     }
 }
 

@@ -69,6 +69,8 @@ final class RegistrationController: UIViewController {
         guard let email = registrationView.emailTextField.text else { return }
         guard let password = registrationView.passwordTextField.text else { return }
         
+        showLoadingIndicator(true)
+        
         let credentials = AuthCredentials(
             profileImage: profileImage,
             nickname: nickname,
@@ -131,6 +133,16 @@ final class RegistrationController: UIViewController {
             action: #selector(textDidChange),
             for: .editingChanged
         )
+    }
+    
+    private func showLoadingIndicator(_ show: Bool) {
+        UIView.animate(withDuration: 0.2) {
+            if show {
+                self.registrationView.activityIndicator.startAnimating()
+            } else {
+                self.registrationView.activityIndicator.stopAnimating()
+            }
+        }
     }
 }
 

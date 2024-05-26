@@ -26,6 +26,8 @@ final class RegistrationView: UIView {
     let signUpButton = UIButton(type: .system)
     private let credentialsStackView = UIStackView()
     
+    let activityIndicator = UIActivityIndicatorView(style: .medium)
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -38,6 +40,10 @@ final class RegistrationView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        endEditing(true)
     }
     
     // MARK: - Setup Views
@@ -84,6 +90,12 @@ final class RegistrationView: UIView {
             $0.addArrangedSubview(signUpButton)
             addSubview($0)
         }
+        
+        activityIndicator.do {
+            $0.color = .systemYellow
+            $0.hidesWhenStopped = true
+            addSubview($0)
+        }
     }
     
     private func setupConstraints() {
@@ -103,6 +115,10 @@ final class RegistrationView: UIView {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(nameStackView.snp.bottom).offset(10)
             $0.left.equalTo(addPhotoButton)
+        }
+        
+        activityIndicator.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
     }
 }
