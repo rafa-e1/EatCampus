@@ -20,9 +20,9 @@ final class LoginView: UIView {
     private let passwordTextField = AuthenticationTextField(placeholder: "비밀번호", isSecure: true)
     private let textFields = UIStackView()
     
-    private let loginButton = UIButton(type: .system)
-    private let resetPasswordButton = UIButton(type: .system)
-    private let createAccountButton = UIButton(type: .system)
+    let loginButton = UIButton(type: .system)
+    let resetPasswordButton = UIButton(type: .system)
+    let createAccountButton = UIButton(type: .system)
     
     // MARK: - Lifecycle
     
