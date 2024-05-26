@@ -14,7 +14,7 @@ final class RegistrationView: UIView {
     
     // MARK: - Properties
     
-    private let addPhotoButton = UIButton(type: .system)
+    let addPhotoButton = UIButton(type: .system)
     
     let nicknameTextField = AuthenticationTextField(placeholder: "닉네임", isSecure: false)
     let fullnameTextField = AuthenticationTextField(placeholder: "이름", isSecure: false)
@@ -90,7 +90,7 @@ final class RegistrationView: UIView {
         addPhotoButton.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide.snp.top)
             $0.left.equalTo(10)
-            $0.size.equalTo(120)
+            $0.size.equalTo(100)
         }
         
         nameStackView.snp.makeConstraints {
@@ -115,6 +115,7 @@ extension RegistrationView: UITextFieldDelegate {
         fullnameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -122,7 +123,8 @@ extension RegistrationView: UITextFieldDelegate {
         case nicknameTextField: fullnameTextField.becomeFirstResponder()
         case fullnameTextField: emailTextField.becomeFirstResponder()
         case emailTextField: passwordTextField.becomeFirstResponder()
-        case passwordTextField: passwordTextField.resignFirstResponder()
+        case passwordTextField: confirmPasswordTextField.becomeFirstResponder()
+        case confirmPasswordTextField: confirmPasswordTextField.resignFirstResponder()
         default: nicknameTextField.becomeFirstResponder()
         }
         

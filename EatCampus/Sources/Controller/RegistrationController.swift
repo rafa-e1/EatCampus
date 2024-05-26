@@ -25,6 +25,7 @@ final class RegistrationController: UIViewController {
         super.viewDidLoad()
         
         setupNavigationBar()
+        setButtonActions()
         configureNotificationObservers()
     }
     
@@ -36,6 +37,13 @@ final class RegistrationController: UIViewController {
     }
     
     // MARK: - Actions
+    
+    @objc private func handleProfilePhotoSelect() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true)
+    }
     
     @objc private func textDidChange(sender: UITextField) {
         if sender == registrationView.nicknameTextField {
@@ -51,6 +59,14 @@ final class RegistrationController: UIViewController {
         }
         
         updateForm()
+    }
+    
+    private func setButtonActions() {
+        registrationView.addPhotoButton.addTarget(
+            self,
+            action: #selector(handleProfilePhotoSelect),
+            for: .touchUpInside
+        )
     }
     
     private func configureNotificationObservers() {
@@ -107,5 +123,27 @@ extension RegistrationController: FormViewModel {
                 for: .normal
             )
         }
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+
+extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        guard let selectedImage = info[.editedImage] as? UIImage else { return }
+        profileImage = selectedImage
+        registrationView.addPhotoButton.layer.cornerRadius = 
+        registrationView.addPhotoButton.frame.width / 2
+        registrationView.addPhotoButton.layer.masksToBounds = true
+        registrationView.addPhotoButton.layer.borderWidth = 2
+        registrationView.addPhotoButton.layer.borderColor = UIColor.systemGreen.cgColor
+        registrationView.addPhotoButton.setImage(
+            selectedImage.withRenderingMode(.alwaysOriginal),
+            for: .normal
+        )
+        dismiss(animated: true)
     }
 }
