@@ -17,6 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         FirebaseApp.configure()
+        
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .background
+        appearance.shadowImage = UIImage()
+        appearance.shadowColor = nil
+        
+        UITabBar.appearance().standardAppearance = appearance
+        
         return true
     }
     
