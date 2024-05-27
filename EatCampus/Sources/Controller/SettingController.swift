@@ -25,6 +25,7 @@ final class SettingController: UIViewController {
         super.viewDidLoad()
         
         darkModeSwitchToggleButton.addTarget(self, action: #selector(handleDarkModeSwitchToggle), for: .valueChanged)
+        initializeDarkModeToggleState()
         logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
         
         view.addSubview(darkModeSwitchToggleButton)
@@ -42,7 +43,6 @@ final class SettingController: UIViewController {
     
     @objc private func handleDarkModeSwitchToggle(_ sender: UISwitch) {
         viewModel.toggleDarkMode(animated: true)
-        darkModeSwitchToggleButton.isOn = viewModel.isDarkModeEnabled
     }
     
     @objc private func logoutButtonTapped() {
@@ -56,5 +56,9 @@ final class SettingController: UIViewController {
         } catch {
             print("DEBUG: Failed to sign out")
         }
+    }
+    
+    private func initializeDarkModeToggleState() {
+        darkModeSwitchToggleButton.isOn = viewModel.isDarkModeEnabled
     }
 }
