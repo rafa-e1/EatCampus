@@ -14,15 +14,16 @@ final class RegistrationView: UIView {
     
     // MARK: - Properties
     
-    let addPhotoButton = UIButton(type: .system)
+    private var isKeyboardAlreadyShown = false
     
+    let addPhotoButton = UIButton(type: .system)
+    private var textFields: [UITextField] = []
     let nicknameTextField = AuthenticationTextField(placeholder: "닉네임", isSecure: false)
     let emailTextField = AuthenticationTextField(placeholder: "이메일", isSecure: false)
     let passwordTextField = AuthenticationTextField(placeholder: "비밀번호", isSecure: true)
     let confirmPasswordTextField = AuthenticationTextField(placeholder: "비밀번호 확인", isSecure: true)
     let signUpButton = UIButton(type: .system)
     private let credentialsStackView = UIStackView()
-    
     let activityIndicator = UIActivityIndicatorView(style: .medium)
     
     // MARK: - Lifecycle
@@ -33,6 +34,7 @@ final class RegistrationView: UIView {
         setupUI()
         setupConstraints()
         configureTextFieldDelegate()
+        registerKeyboardNotifications()
     }
     
     required init?(coder: NSCoder) {
@@ -41,6 +43,10 @@ final class RegistrationView: UIView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         endEditing(true)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Setup Views
@@ -95,14 +101,52 @@ final class RegistrationView: UIView {
         }
         
         credentialsStackView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(addPhotoButton.snp.bottom).offset(20)
+            $0.centerX.equalTo(addPhotoButton)
+            $0.top.lessThanOrEqualTo(addPhotoButton.snp.bottom).offset(20)
             $0.left.equalTo(10)
+            $0.bottom.equalTo(keyboardLayoutGuide.snp.top).offset(-20)
         }
         
         activityIndicator.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
+    }
+    
+    // MARK: - Actions
+    
+    func registerKeyboardNotifications() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if !isKeyboardAlreadyShown {
+            UIView.animate(withDuration: 0.3) {
+                self.backgroundColor = .black.withAlphaComponent(0.8)
+                self.addPhotoButton.alpha = 0.2
+                self.bringSubviewToFront(self.credentialsStackView)
+            }
+            isKeyboardAlreadyShown = true
+        }
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        UIView.animate(withDuration: 0.3) {
+            self.backgroundColor = .background
+            self.addPhotoButton.alpha = 1
+        }
+        isKeyboardAlreadyShown = false
     }
 }
 
@@ -110,10 +154,14 @@ final class RegistrationView: UIView {
 
 extension RegistrationView: UITextFieldDelegate {
     private func configureTextFieldDelegate() {
-        nicknameTextField.delegate = self
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        confirmPasswordTextField.delegate = self
+        textFields = [
+            nicknameTextField,
+            emailTextField,
+            passwordTextField,
+            confirmPasswordTextField
+        ]
+        
+        textFields.forEach { $0.delegate = self }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
