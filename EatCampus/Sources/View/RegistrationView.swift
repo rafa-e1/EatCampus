@@ -17,9 +17,6 @@ final class RegistrationView: UIView {
     let addPhotoButton = UIButton(type: .system)
     
     let nicknameTextField = AuthenticationTextField(placeholder: "닉네임", isSecure: false)
-    let fullnameTextField = AuthenticationTextField(placeholder: "이름", isSecure: false)
-    private let nameStackView = UIStackView()
-    
     let emailTextField = AuthenticationTextField(placeholder: "이메일", isSecure: false)
     let passwordTextField = AuthenticationTextField(placeholder: "비밀번호", isSecure: true)
     let confirmPasswordTextField = AuthenticationTextField(placeholder: "비밀번호 확인", isSecure: true)
@@ -52,11 +49,6 @@ final class RegistrationView: UIView {
         backgroundColor = .background
         
         addPhotoButton.do {
-            $0.setBackgroundImage(
-                UIImage(systemName: "person.circle.fill")?
-                    .withTintColor(.buttonBackground, renderingMode: .alwaysOriginal), for: .normal
-            )
-            
             $0.setImage(
                 UIImage(systemName: "plus")?
                     .withTintColor(.systemBlue, renderingMode: .alwaysOriginal)
@@ -65,15 +57,11 @@ final class RegistrationView: UIView {
                     ),
                 for: .normal
             )
+            $0.layer.cornerRadius = 180 / 2
+            $0.layer.masksToBounds = true
+            $0.layer.borderWidth = 1
+            $0.layer.borderColor = UIColor.buttonBackground.cgColor
             
-            addSubview($0)
-        }
-        
-        nameStackView.do {
-            $0.axis = .vertical
-            $0.spacing = 10
-            $0.addArrangedSubview(nicknameTextField)
-            $0.addArrangedSubview(fullnameTextField)
             addSubview($0)
         }
         
@@ -84,6 +72,7 @@ final class RegistrationView: UIView {
         credentialsStackView.do {
             $0.axis = .vertical
             $0.spacing = 10
+            $0.addArrangedSubview(nicknameTextField)
             $0.addArrangedSubview(emailTextField)
             $0.addArrangedSubview(passwordTextField)
             $0.addArrangedSubview(confirmPasswordTextField)
@@ -100,21 +89,15 @@ final class RegistrationView: UIView {
     
     private func setupConstraints() {
         addPhotoButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
             $0.top.equalTo(safeAreaLayoutGuide.snp.top)
-            $0.left.equalTo(10)
-            $0.size.equalTo(100)
-        }
-        
-        nameStackView.snp.makeConstraints {
-            $0.centerY.equalTo(addPhotoButton)
-            $0.left.equalTo(addPhotoButton.snp.right).offset(10)
-            $0.right.equalTo(-10)
+            $0.size.equalTo(180)
         }
         
         credentialsStackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(nameStackView.snp.bottom).offset(10)
-            $0.left.equalTo(addPhotoButton)
+            $0.top.equalTo(addPhotoButton.snp.bottom).offset(20)
+            $0.left.equalTo(10)
         }
         
         activityIndicator.snp.makeConstraints {
@@ -128,7 +111,6 @@ final class RegistrationView: UIView {
 extension RegistrationView: UITextFieldDelegate {
     private func configureTextFieldDelegate() {
         nicknameTextField.delegate = self
-        fullnameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
@@ -136,8 +118,7 @@ extension RegistrationView: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
-        case nicknameTextField: fullnameTextField.becomeFirstResponder()
-        case fullnameTextField: emailTextField.becomeFirstResponder()
+        case nicknameTextField: emailTextField.becomeFirstResponder()
         case emailTextField: passwordTextField.becomeFirstResponder()
         case passwordTextField: confirmPasswordTextField.becomeFirstResponder()
         case confirmPasswordTextField: confirmPasswordTextField.resignFirstResponder()

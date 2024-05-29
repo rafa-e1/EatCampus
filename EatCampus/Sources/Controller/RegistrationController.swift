@@ -49,8 +49,6 @@ final class RegistrationController: UIViewController {
     @objc private func textDidChange(sender: UITextField) {
         if sender == registrationView.nicknameTextField {
             viewModel.nickname = sender.text
-        } else if sender == registrationView.fullnameTextField {
-            viewModel.fullname = sender.text
         } else if sender == registrationView.emailTextField {
             viewModel.email = sender.text
         } else if sender == registrationView.passwordTextField {
@@ -65,7 +63,6 @@ final class RegistrationController: UIViewController {
     @objc private func signUpButtonTapped() {
         guard let profileImage = self.profileImage else { return }
         guard let nickname = registrationView.nicknameTextField.text else { return }
-        guard let fullname = registrationView.fullnameTextField.text else { return }
         guard let email = registrationView.emailTextField.text else { return }
         guard let password = registrationView.passwordTextField.text else { return }
         
@@ -74,7 +71,6 @@ final class RegistrationController: UIViewController {
         let credentials = AuthCredentials(
             profileImage: profileImage,
             nickname: nickname,
-            fullname: fullname,
             email: email,
             password: password
         )
@@ -105,12 +101,6 @@ final class RegistrationController: UIViewController {
     
     private func configureNotificationObservers() {
         registrationView.nicknameTextField.addTarget(
-            self,
-            action: #selector(textDidChange),
-            for: .editingChanged
-        )
-        
-        registrationView.fullnameTextField.addTarget(
             self,
             action: #selector(textDidChange),
             for: .editingChanged
@@ -182,8 +172,6 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
         registrationView.addPhotoButton.layer.cornerRadius = 
         registrationView.addPhotoButton.frame.width / 2
         registrationView.addPhotoButton.layer.masksToBounds = true
-        registrationView.addPhotoButton.layer.borderWidth = 2
-        registrationView.addPhotoButton.layer.borderColor = UIColor.systemGreen.cgColor
         registrationView.addPhotoButton.setImage(
             selectedImage.withRenderingMode(.alwaysOriginal),
             for: .normal

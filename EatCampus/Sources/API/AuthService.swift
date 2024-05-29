@@ -13,7 +13,6 @@ import FirebaseFirestore
 struct AuthCredentials {
     let profileImage: UIImage
     let nickname: String
-    let fullname: String
     let email: String
     let password: String
 }
@@ -46,7 +45,6 @@ struct AuthService {
                 let data: [String: Any] = [
                     "profileImageURL": imageURL,
                     "nickname": credentials.nickname,
-                    "fullname": credentials.fullname,
                     "email": credentials.email,
                     "uid": uid
                 ]
