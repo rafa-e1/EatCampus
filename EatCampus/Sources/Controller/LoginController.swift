@@ -95,6 +95,8 @@ final class LoginController: UIViewController {
         AuthService.logUserIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 print("DEBUG: Failed to register user: \(error.localizedDescription)")
+                self.showLoadingIndicator(false)
+                self.showAlert(title: "로그인 실패", message: "이메일 또는 비밀번호 오류")
                 return
             }
             
@@ -120,6 +122,13 @@ final class LoginController: UIViewController {
                 self.loginView.activityIndicator.stopAnimating()
             }
         }
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "확인", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
     }
 }
 
