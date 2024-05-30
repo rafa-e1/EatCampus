@@ -107,14 +107,21 @@ final class LoginController: UIViewController {
     }
     
     @objc private func resetPasswordButtonTapped() {
-        let alertController = UIAlertController(title: "비밀번호 재설정", message: "등록된 이메일 주소를 입력해주세요.", preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: "비밀번호 재설정",
+            message: "등록된 이메일 주소를 입력해주세요.",
+            preferredStyle: .alert
+        )
         
         alertController.addTextField { textField in
             textField.placeholder = "이메일"
             textField.keyboardType = .emailAddress
         }
         
-        let confirmAction = UIAlertAction(title: "확인", style: .default) { [weak alertController] _ in
+        let confirmAction = UIAlertAction(
+            title: "확인",
+            style: .default
+        ) { [weak alertController] _ in
             guard let alertController = alertController, let email = alertController.textFields?.first?.text, !email.isEmpty else {
                 self.showAlert(title: "오류", message: "이메일 주소를 입력해야 합니다.")
                 return
