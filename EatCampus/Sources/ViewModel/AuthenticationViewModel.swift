@@ -43,15 +43,13 @@ struct LoginViewModel: AuthenticationViewModel {
 
 struct RegistrationViewModel: AuthenticationViewModel {
     var nickname: String?
-    var fullname: String?
     var email: String?
     var password: String?
     var confirmPassword: String?
     
     var isFormValid: Bool {
-        return isNicknameValid(nickname) && isFullnameValid(fullname) &&
-               isEmailValid(email) && isPasswordValid(password) &&
-               isConfirmPasswordValid(confirmPassword)
+        return isNicknameValid(nickname) && isEmailValid(email) &&
+               isPasswordValid(password) && isConfirmPasswordValid(confirmPassword)
     }
     
     var buttonBackgroundColor: UIColor {
@@ -64,11 +62,6 @@ struct RegistrationViewModel: AuthenticationViewModel {
     
     private func isNicknameValid(_ nickname: String?) -> Bool {
         guard let nickname = nickname, !nickname.isEmpty else { return false }
-        return true
-    }
-    
-    private func isFullnameValid(_ fullname: String?) -> Bool {
-        guard let fullname = fullname, !fullname.isEmpty else { return false }
         return true
     }
     
