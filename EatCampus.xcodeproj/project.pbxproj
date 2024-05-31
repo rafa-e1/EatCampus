@@ -37,7 +37,6 @@
 		050F8F3F2C034075003B7820 /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F3E2C034075003B7820 /* ProfileHeaderViewModel.swift */; };
 		050F8F412C0393FC003B7820 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F402C0393FC003B7820 /* SettingViewModel.swift */; };
 		050F8F432C039426003B7820 /* DarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F422C039426003B7820 /* DarkMode.swift */; };
-		050F8F452C0842E7003B7820 /* LoginErrorAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F442C0842E7003B7820 /* LoginErrorAlertView.swift */; };
 		10D1233BDF8605EE3769FEEE /* Pods_EatCampus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D71C7B36177800E38F46B96 /* Pods_EatCampus.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,7 +73,6 @@
 		050F8F3E2C034075003B7820 /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
 		050F8F402C0393FC003B7820 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		050F8F422C039426003B7820 /* DarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkMode.swift; sourceTree = "<group>"; };
-		050F8F442C0842E7003B7820 /* LoginErrorAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginErrorAlertView.swift; sourceTree = "<group>"; };
 		3D71C7B36177800E38F46B96 /* Pods_EatCampus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EatCampus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E8CD1EC92FB255576ABBB64 /* Pods-EatCampus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EatCampus.release.xcconfig"; path = "Target Support Files/Pods-EatCampus/Pods-EatCampus.release.xcconfig"; sourceTree = "<group>"; };
 		FD90F24EA534CF337DC540FB /* Pods-EatCampus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EatCampus.debug.xcconfig"; path = "Target Support Files/Pods-EatCampus/Pods-EatCampus.debug.xcconfig"; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 			isa = PBXGroup;
 			children = (
 				050F8F082C021DA5003B7820 /* LoginView.swift */,
-				050F8F442C0842E7003B7820 /* LoginErrorAlertView.swift */,
 				050F8F102C02F2B3003B7820 /* RegistrationView.swift */,
 				050F8F0E2C023503003B7820 /* AuthenticationUIComponents.swift */,
 				050F8F3C2C033F02003B7820 /* ProfileHeader.swift */,
@@ -371,7 +368,6 @@
 				050F8F1F2C033130003B7820 /* MainTabBarController.swift in Sources */,
 				050F8EEA2C021CDB003B7820 /* AppDelegate.swift in Sources */,
 				050F8F0F2C023503003B7820 /* AuthenticationUIComponents.swift in Sources */,
-				050F8F452C0842E7003B7820 /* LoginErrorAlertView.swift in Sources */,
 				050F8F072C021D99003B7820 /* LoginController.swift in Sources */,
 				050F8F152C0305A8003B7820 /* AuthenticationViewModel.swift in Sources */,
 				050F8F192C03284F003B7820 /* ImageUploader.swift in Sources */,
