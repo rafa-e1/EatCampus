@@ -69,8 +69,6 @@ final class ProfileHeader: UICollectionReusableView {
         }
     }
     
-    // MARK: - Actions
-    
     // MARK: - Helpers
     
     func configure() {
