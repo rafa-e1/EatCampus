@@ -7,8 +7,8 @@
 
 import UIKit
 
-private let reuseIdentifier = "ProfileCell"
 private let headerIdentifier = "ProfileHeader"
+private let reuseIdentifier = "ProfileCell"
 
 final class ProfileController: UICollectionViewController {
     
