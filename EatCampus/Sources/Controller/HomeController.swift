@@ -15,7 +15,9 @@ final class HomeController: UICollectionViewController {
     // MARK: - Lifecycle
     
     init() {
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionHeadersPinToVisibleBounds = true
+        super.init(collectionViewLayout: layout)
     }
     
     required init?(coder: NSCoder) {
@@ -79,7 +81,11 @@ extension HomeController {
             return UICollectionReusableView()
         }
         
-        header.searchBarButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        header.searchBarButton.addTarget(
+            self,
+            action: #selector(searchButtonTapped),
+            for: .touchUpInside
+        )
         
         return header
     }
@@ -113,7 +119,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         referenceSizeForHeaderInSection section: Int
     ) -> CGSize {
-        return CGSize(width: view.frame.width, height: 100)
+        return CGSize(width: view.frame.width, height: 80)
     }
     
     func collectionView(
