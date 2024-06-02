@@ -40,7 +40,7 @@ final class ProfileHeader: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setup Views
+    // MARK: - Setup UI
     
     private func setupUI() {
         profileImageView.do {

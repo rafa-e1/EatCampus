@@ -37,9 +37,9 @@
 		050F8F3F2C034075003B7820 /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F3E2C034075003B7820 /* ProfileHeaderViewModel.swift */; };
 		050F8F412C0393FC003B7820 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F402C0393FC003B7820 /* SettingViewModel.swift */; };
 		050F8F432C039426003B7820 /* DarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F422C039426003B7820 /* DarkMode.swift */; };
-		050F8F5C2C0A0971003B7820 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F5B2C0A0971003B7820 /* HomeHeader.swift */; };
 		050F8F5E2C0A0E02003B7820 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F5D2C0A0E02003B7820 /* HomeCell.swift */; };
 		050F8F602C0A13C1003B7820 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F5F2C0A13C1003B7820 /* MapController.swift */; };
+		050F8F642C0C0A46003B7820 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F8F632C0C0A46003B7820 /* HomeHeader.swift */; };
 		10D1233BDF8605EE3769FEEE /* Pods_EatCampus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D71C7B36177800E38F46B96 /* Pods_EatCampus.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,9 +76,9 @@
 		050F8F3E2C034075003B7820 /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
 		050F8F402C0393FC003B7820 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		050F8F422C039426003B7820 /* DarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkMode.swift; sourceTree = "<group>"; };
-		050F8F5B2C0A0971003B7820 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		050F8F5D2C0A0E02003B7820 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		050F8F5F2C0A13C1003B7820 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		050F8F632C0C0A46003B7820 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		3D71C7B36177800E38F46B96 /* Pods_EatCampus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EatCampus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E8CD1EC92FB255576ABBB64 /* Pods-EatCampus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EatCampus.release.xcconfig"; path = "Target Support Files/Pods-EatCampus/Pods-EatCampus.release.xcconfig"; sourceTree = "<group>"; };
 		FD90F24EA534CF337DC540FB /* Pods-EatCampus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EatCampus.debug.xcconfig"; path = "Target Support Files/Pods-EatCampus/Pods-EatCampus.debug.xcconfig"; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				050F8F5A2C09FFB8003B7820 /* Authentication */,
-				050F8F5B2C0A0971003B7820 /* HomeHeader.swift */,
+				050F8F632C0C0A46003B7820 /* HomeHeader.swift */,
 				050F8F5D2C0A0E02003B7820 /* HomeCell.swift */,
 				050F8F3C2C033F02003B7820 /* ProfileHeader.swift */,
 				050F8F382C03378B003B7820 /* ProfileCell.swift */,
@@ -381,7 +381,6 @@
 				050F8F312C033450003B7820 /* NowController.swift in Sources */,
 				050F8F2F2C03343E003B7820 /* SettingController.swift in Sources */,
 				050F8F392C03378B003B7820 /* ProfileCell.swift in Sources */,
-				050F8F5C2C0A0971003B7820 /* HomeHeader.swift in Sources */,
 				050F8F232C03329D003B7820 /* UserService.swift in Sources */,
 				050F8F412C0393FC003B7820 /* SettingViewModel.swift in Sources */,
 				050F8F3F2C034075003B7820 /* ProfileHeaderViewModel.swift in Sources */,
@@ -405,6 +404,7 @@
 				050F8F1B2C032ADB003B7820 /* AuthService.swift in Sources */,
 				050F8F092C021DA5003B7820 /* LoginView.swift in Sources */,
 				050F8EEC2C021CDB003B7820 /* SceneDelegate.swift in Sources */,
+				050F8F642C0C0A46003B7820 /* HomeHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

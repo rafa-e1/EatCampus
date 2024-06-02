@@ -44,7 +44,7 @@ final class LoginView: UIView {
         endEditing(true)
     }
     
-    // MARK: - Setup Views
+    // MARK: - Setup UI
     
     private func setupUI() {
         backgroundColor = .background

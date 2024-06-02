@@ -7,17 +7,23 @@
 
 import UIKit
 
-private let headerIdentifier = "HomeHeader"
+import SnapKit
+
 private let reuseIdentifier = "HomeCell"
 
-final class HomeController: UICollectionViewController {
+final class HomeController: UIViewController {
+    
+    // MARK: - Properties
+    
+    private let homeHeader = HomeHeader()
+    private let collectionView: UICollectionView
     
     // MARK: - Lifecycle
     
     init() {
         let layout = UICollectionViewFlowLayout()
-        layout.sectionHeadersPinToVisibleBounds = true
-        super.init(collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -27,6 +33,9 @@ final class HomeController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupUI()
+        setupConstraints()
+        setButtonActions()
         configureCollectionView()
     }
     
@@ -35,62 +44,66 @@ final class HomeController: UICollectionViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    // MARK: - Setup UI
+    
+    private func setupUI() {
+        view.addSubview(homeHeader)
+        view.addSubview(collectionView)
+    }
+    
+    private func setupConstraints() {
+        homeHeader.snp.makeConstraints {
+            $0.centerX.left.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.height.equalTo(80)
+        }
+        
+        collectionView.snp.makeConstraints {
+            $0.centerX.left.equalToSuperview()
+            $0.top.equalTo(homeHeader.snp.bottom)
+            $0.bottom.equalToSuperview()
+        }
+    }
+    
     // MARK: - Actions
+    
+    private func setButtonActions() {
+        homeHeader.searchBarButton.addTarget(
+            self,
+            action: #selector(searchButtonTapped),
+            for: .touchUpInside
+        )
+    }
     
     @objc private func searchButtonTapped() {
         let controller = MapController()
-        controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.tintColor = .label
-        navigationController?.navigationBar.topItem?.title = ""
+        navigationItem.title = ""
     }
     
     // MARK: - Helpers
     
-    func configureCollectionView() {
+    private func configureCollectionView() {
         collectionView.backgroundColor = .clear
-        collectionView.register(
-            HomeHeader.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: headerIdentifier
-        )
         collectionView.register(HomeCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
 }
 
 // MARK: - UICollectionViewDataSource
 
-extension HomeController {
-    override func collectionView(
+extension HomeController: UICollectionViewDataSource {
+    func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 27
+        return 100
     }
     
-    override func collectionView(
-        _ collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        at indexPath: IndexPath
-    ) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(
-            ofKind: kind,
-            withReuseIdentifier: headerIdentifier,
-            for: indexPath
-        ) as? HomeHeader else {
-            return UICollectionReusableView()
-        }
-        
-        header.searchBarButton.addTarget(
-            self,
-            action: #selector(searchButtonTapped),
-            for: .touchUpInside
-        )
-        
-        return header
-    }
-    
-    override func collectionView(
+    func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
@@ -100,14 +113,13 @@ extension HomeController {
         ) as? HomeCell else {
             return UICollectionViewCell()
         }
-        
         return cell
     }
 }
 
 // MARK: - UICollectionViewDelegate
 
-extension HomeController {
+extension HomeController: UICollectionViewDelegate {
     
 }
 
@@ -117,33 +129,9 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
-        referenceSizeForHeaderInSection section: Int
-    ) -> CGSize {
-        return CGSize(width: view.frame.width, height: 80)
-    }
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        let width = (view.frame.width - 2) / 3
-        return CGSize(width: width, height: width)
-    }
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumLineSpacingForSectionAt section: Int
-    ) -> CGFloat {
-        return 1
-    }
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumInteritemSpacingForSectionAt section: Int
-    ) -> CGFloat {
-        return 1
+        let width = view.bounds.width
+        return CGSize(width: width, height: 100)
     }
 }

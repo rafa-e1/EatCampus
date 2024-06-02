@@ -49,7 +49,7 @@ final class RegistrationView: UIView {
         NotificationCenter.default.removeObserver(self)
     }
     
-    // MARK: - Setup Views
+    // MARK: - Setup UI
     
     private func setupUI() {
         backgroundColor = .background
