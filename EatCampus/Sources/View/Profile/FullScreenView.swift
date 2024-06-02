@@ -55,7 +55,7 @@ final class FullScreenView: UIView {
     
     private func setupConstraints() {
         closeButton.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide.snp.top)
+            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(20)
             $0.left.equalTo(20)
         }
         
