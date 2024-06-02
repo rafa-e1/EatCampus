@@ -15,6 +15,7 @@ final class ProfileController: UICollectionViewController {
     // MARK: - Properties
     
     private var user: User
+    private let refreshControl = UIRefreshControl()
     
     // MARK: - Lifecycle
     
@@ -30,14 +31,43 @@ final class ProfileController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupUI()
+        setupRefreshControl()
         configureCollectionView()
+    }
+    
+    // MARK: - Setup UI
+    
+    private func setupUI() {
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .background
+        appearance.shadowColor = nil
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationItem.title = user.nickname
+        
+        refreshControl.tintColor = .systemYellow
+        collectionView.backgroundColor = .clear
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func refreshData() {
+        Vibration.success.vibrate()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.refreshControl.endRefreshing()
+        }
     }
     
     // MARK: - Helpers
     
-    func configureCollectionView() {
-        navigationItem.title = user.nickname
-        collectionView.backgroundColor = .clear
+    private func setupRefreshControl() {
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+    }
+    
+    private func configureCollectionView() {
         collectionView.register(
             ProfileHeader.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
