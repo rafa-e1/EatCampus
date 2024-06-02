@@ -16,6 +16,7 @@ final class HomeController: UIViewController {
     // MARK: - Properties
     
     private let homeHeader = HomeHeader()
+    private let refreshControl = UIRefreshControl()
     private let collectionView: UICollectionView
     
     // MARK: - Lifecycle
@@ -49,13 +50,16 @@ final class HomeController: UIViewController {
     private func setupUI() {
         view.addSubview(homeHeader)
         view.addSubview(collectionView)
+        
+        refreshControl.tintColor = .systemYellow
+        collectionView.backgroundColor = .clear
     }
     
     private func setupConstraints() {
         homeHeader.snp.makeConstraints {
             $0.centerX.left.equalToSuperview()
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.height.equalTo(80)
+            $0.height.equalTo(92)
         }
         
         collectionView.snp.makeConstraints {
@@ -83,13 +87,23 @@ final class HomeController: UIViewController {
         navigationItem.title = ""
     }
     
+    @objc private func refreshData() {
+        Vibration.success.vibrate()
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.refreshControl.endRefreshing()
+        }
+    }
+    
     // MARK: - Helpers
     
     private func configureCollectionView() {
-        collectionView.backgroundColor = .clear
+        collectionView.scrollIndicatorInsets = .init(top: -2, left: 0, bottom: 0, right: 0)
         collectionView.register(HomeCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
     }
 }
 
@@ -100,7 +114,7 @@ extension HomeController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 100
+        return 10
     }
     
     func collectionView(
@@ -113,6 +127,7 @@ extension HomeController: UICollectionViewDataSource {
         ) as? HomeCell else {
             return UICollectionViewCell()
         }
+        cell.backgroundColor = .systemIndigo
         return cell
     }
 }
@@ -120,7 +135,6 @@ extension HomeController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension HomeController: UICollectionViewDelegate {
-    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -132,6 +146,6 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         let width = view.bounds.width
-        return CGSize(width: width, height: 100)
+        return CGSize(width: width, height: width)
     }
 }
