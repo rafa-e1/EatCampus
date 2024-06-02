@@ -12,7 +12,7 @@ final class HomeHeader: UIView {
     // MARK: - Properties
     
     let searchBarButton = UIButton(type: .custom)
-    let tabMenu = UISegmentedControl(items: ["전체보기", "카테고리"])
+    let tabMenu = UISegmentedControl(items: ["전체보기", "카테고리","내 족보"])
     let underlineView = UIView()
     
     // MARK: - Lifecycle
@@ -39,10 +39,23 @@ final class HomeHeader: UIView {
     private func configureSearchButton() {
         var config = UIButton.Configuration.gray()
         config.title = "검색"
-        config.image = UIImage(systemName: "magnifyingglass")
+        config.image = UIImage(systemName: "magnifyingglass")?
+            .applyingSymbolConfiguration(
+                UIImage.SymbolConfiguration(pointSize: 15, weight: .semibold)
+            )
         config.imagePlacement = .leading
-        config.imagePadding = 10
+        config.imagePadding = 5
+        config.attributedTitle = AttributedString(
+            NSAttributedString(
+                string: "검색",
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 17, weight: .regular),
+                    .foregroundColor: UIColor.systemGray
+                ]
+            )
+        )
         
+        searchBarButton.setTitleColor(.systemRed, for: .selected)
         searchBarButton.configuration = config
         searchBarButton.tintColor = .systemGray
         searchBarButton.contentHorizontalAlignment = .leading
@@ -61,11 +74,11 @@ final class HomeHeader: UIView {
         
         let normalTextAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.lightGray,
-            .font: UIFont.systemFont(ofSize: 16)
+            .font: UIFont.systemFont(ofSize: 17)
         ]
         let selectedTextAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.label,
-            .font: UIFont.boldSystemFont(ofSize: 16)
+            .font: UIFont.boldSystemFont(ofSize: 17)
         ]
         
         tabMenu.setTitleTextAttributes(normalTextAttributes, for: .normal)
@@ -97,7 +110,7 @@ final class HomeHeader: UIView {
     private func setupConstraints() {
         searchBarButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(safeAreaLayoutGuide.snp.top)
+            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(10)
             $0.left.equalTo(20)
             $0.height.equalTo(40)
         }
@@ -106,7 +119,7 @@ final class HomeHeader: UIView {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(searchBarButton.snp.bottom).offset(10)
             $0.left.equalTo(searchBarButton)
-            $0.height.equalTo(40)
+            $0.height.equalTo(45)
         }
         
         underlineView.snp.makeConstraints {

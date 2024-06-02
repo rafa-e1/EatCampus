@@ -59,7 +59,7 @@ final class HomeController: UIViewController {
         homeHeader.snp.makeConstraints {
             $0.centerX.left.equalToSuperview()
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.height.equalTo(92)
+            $0.height.equalTo(107)
         }
         
         collectionView.snp.makeConstraints {
@@ -127,7 +127,7 @@ extension HomeController: UICollectionViewDataSource {
         ) as? HomeCell else {
             return UICollectionViewCell()
         }
-        cell.backgroundColor = .systemIndigo
+        cell.backgroundColor = .skeleton
         return cell
     }
 }
