@@ -69,7 +69,7 @@ final class MainTabBarController: UITabBarController {
     // MARK: - Configuration
     
     private func configureTabBar() {
-        
+        tabBar.backgroundColor = .background
     }
 }
 
