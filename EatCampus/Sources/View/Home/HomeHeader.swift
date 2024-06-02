@@ -74,11 +74,11 @@ final class HomeHeader: UIView {
         
         let normalTextAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.lightGray,
-            .font: UIFont.systemFont(ofSize: 17)
+            .font: UIFont.systemFont(ofSize: 15)
         ]
         let selectedTextAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.label,
-            .font: UIFont.boldSystemFont(ofSize: 17)
+            .font: UIFont.boldSystemFont(ofSize: 15)
         ]
         
         tabMenu.setTitleTextAttributes(normalTextAttributes, for: .normal)
@@ -112,7 +112,7 @@ final class HomeHeader: UIView {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(10)
             $0.left.equalTo(20)
-            $0.height.equalTo(40)
+            $0.height.equalTo(35)
         }
         
         tabMenu.snp.makeConstraints {
