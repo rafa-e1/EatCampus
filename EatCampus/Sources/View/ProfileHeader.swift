@@ -21,7 +21,7 @@ final class ProfileHeader: UICollectionReusableView {
         }
     }
     
-    private let profileImageView = UIImageView()
+    let profileImageView = UIImageView()
     private var postsLabel = UILabel()
     private var followersLabel = UILabel()
     private var genealogy = UILabel()
@@ -34,6 +34,7 @@ final class ProfileHeader: UICollectionReusableView {
         
         setupUI()
         setupConstraints()
+        setupTapGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -47,6 +48,7 @@ final class ProfileHeader: UICollectionReusableView {
             $0.contentMode = .scaleAspectFill
             $0.layer.cornerRadius = 180 / 2
             $0.clipsToBounds = true
+            $0.isUserInteractionEnabled = true
             addSubview($0)
         }
         
@@ -84,7 +86,7 @@ final class ProfileHeader: UICollectionReusableView {
     private func setupConstraints() {
         profileImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(20)
+            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(10)
             $0.size.equalTo(180)
         }
         
@@ -94,6 +96,21 @@ final class ProfileHeader: UICollectionReusableView {
             $0.left.lessThanOrEqualTo(20)
             $0.height.equalTo(50)
         }
+    }
+    
+    // MARK: - Actions
+    
+    private func setupTapGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleImageTap))
+        profileImageView.addGestureRecognizer(tap)
+    }
+    
+    @objc private func handleImageTap() {
+        let fullScreen = FullScreenController()
+        fullScreen.modalTransitionStyle = .crossDissolve
+        fullScreen.modalPresentationStyle = .overFullScreen
+        fullScreen.image = profileImageView.image
+        window?.rootViewController?.present(fullScreen, animated: true)
     }
     
     // MARK: - Helpers

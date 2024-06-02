@@ -93,7 +93,6 @@ extension ProfileController {
 // MARK: - UICollectionViewDelegate
 
 extension ProfileController {
-    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
