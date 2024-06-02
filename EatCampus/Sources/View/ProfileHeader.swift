@@ -22,9 +22,9 @@ final class ProfileHeader: UICollectionReusableView {
     }
     
     private let profileImageView = UIImageView()
-    private let fullnameLabel = UILabel()
     private var postsLabel = UILabel()
     private var followersLabel = UILabel()
+    private var genealogy = UILabel()
     private let userInfoStackView = UIStackView()
     
     // MARK: - Lifecycle
@@ -50,11 +50,35 @@ final class ProfileHeader: UICollectionReusableView {
             addSubview($0)
         }
         
-        fullnameLabel.do {
-            $0.font = .boldSystemFont(ofSize: 14)
+        postsLabel.do {
+            $0.numberOfLines = 0
             $0.textAlignment = .center
+            $0.attributedText = attributedStatusText(value: 999, label: "게시물")
+        }
+        
+        followersLabel.do {
+            $0.numberOfLines = 0
+            $0.textAlignment = .center
+            $0.attributedText = attributedStatusText(value: 999, label: "팔로워")
+        }
+        
+        genealogy.do {
+            $0.numberOfLines = 0
+            $0.textAlignment = .center
+            $0.attributedText = attributedStatusText(value: 999, label: "족보")
+        }
+        
+        userInfoStackView.do {
+            $0.addArrangedSubview(postsLabel)
+            $0.addArrangedSubview(followersLabel)
+            $0.addArrangedSubview(genealogy)
+            $0.distribution = .fillEqually
+            $0.spacing = 0
             addSubview($0)
         }
+        
+        addDot(to: postsLabel)
+        addDot(to: followersLabel)
     }
     
     private func setupConstraints() {
@@ -64,10 +88,11 @@ final class ProfileHeader: UICollectionReusableView {
             $0.size.equalTo(180)
         }
         
-        fullnameLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
+        userInfoStackView.snp.makeConstraints {
+            $0.centerX.equalTo(profileImageView)
             $0.top.equalTo(profileImageView.snp.bottom).offset(10)
-            $0.left.equalTo(profileImageView)
+            $0.left.lessThanOrEqualTo(20)
+            $0.height.equalTo(50)
         }
     }
     
@@ -81,7 +106,36 @@ final class ProfileHeader: UICollectionReusableView {
                 with: url, options: [.processor(DefaultImageProcessor.default)]
             )
         }
+    }
+    
+    private func attributedStatusText(value: Int, label: String) -> NSAttributedString {
+        let attributedText = NSMutableAttributedString(
+            string: "\(value)\n",
+            attributes: [.font: UIFont.boldSystemFont(ofSize: 14)]
+        )
+        attributedText.append(
+            NSAttributedString(
+                string: label,
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 14),
+                    .foregroundColor: UIColor.lightGray
+                ]
+            )
+        )
+        return attributedText
+    }
+    
+    private func addDot(to label: UILabel) {
+        let dot = UIView()
+        dot.backgroundColor = .lightGray
+        dot.layer.cornerRadius = 1
+        dot.clipsToBounds = true
+        addSubview(dot)
         
-        fullnameLabel.text = viewModel.fullname
+        dot.snp.makeConstraints {
+            $0.centerY.equalTo(userInfoStackView)
+            $0.left.equalTo(label.snp.right)
+            $0.size.equalTo(2)
+        }
     }
 }
