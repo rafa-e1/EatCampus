@@ -1105,6 +1105,9 @@ PODS:
     - nanopb/encode (= 2.30910.0)
   - nanopb/decode (2.30910.0)
   - nanopb/encode (2.30910.0)
+  - NMapsGeometry (1.0.2)
+  - NMapsMap (3.18.1):
+    - NMapsGeometry
   - PromisesObjC (2.4.0)
   - RecaptchaInterop (100.0.0)
   - SnapKit (5.7.1)
@@ -1115,6 +1118,7 @@ DEPENDENCIES:
   - FirebaseFirestore
   - FirebaseStorage
   - Kingfisher (~> 7.0)
+  - NMapsMap
   - SnapKit (from `https://github.com/SnapKit/SnapKit.git`)
   - Then
 
@@ -1139,6 +1143,8 @@ SPEC REPOS:
     - Kingfisher
     - leveldb-library
     - nanopb
+    - NMapsGeometry
+    - NMapsMap
     - PromisesObjC
     - RecaptchaInterop
     - Then
@@ -1172,11 +1178,13 @@ SPEC CHECKSUMS:
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
   leveldb-library: e8eadf9008a61f9e1dde3978c086d2b6d9b9dc28
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
+  NMapsGeometry: 4e02554fa9880ef02ed96b075dc84355d6352479
+  NMapsMap: e879088eeee2d1e3b97f0a609076e1824dce2cad
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: b92acd86aec3ae8424308ac53fc6c6b3e4f748a2
+PODFILE CHECKSUM: b5413b36384d7c040f27f4d876c5d82aca19d3b3
 
 COCOAPODS: 1.14.3
