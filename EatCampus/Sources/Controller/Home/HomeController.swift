@@ -81,6 +81,7 @@ final class HomeController: UIViewController {
     
     @objc private func searchButtonTapped() {
         let controller = MapController()
+        controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.tintColor = .label
