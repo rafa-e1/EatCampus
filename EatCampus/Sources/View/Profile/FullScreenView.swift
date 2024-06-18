@@ -35,10 +35,10 @@ final class FullScreenView: UIView {
     private func setupUI() {
         closeButton.do {
             $0.setImage(
-                UIImage(systemName: "xmark")?
+                UIImage(systemName: "xmark.circle.fill")?
                     .withTintColor(.white, renderingMode: .alwaysOriginal)
                     .applyingSymbolConfiguration(
-                        UIImage.SymbolConfiguration(pointSize: 20, weight: .medium)
+                        UIImage.SymbolConfiguration(pointSize: 40, weight: .medium)
                     ),
                 for: .normal
             )
@@ -55,8 +55,8 @@ final class FullScreenView: UIView {
     
     private func setupConstraints() {
         closeButton.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(20)
-            $0.left.equalTo(20)
+            $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-20)
+            $0.right.equalTo(-20)
         }
         
         imageView.snp.makeConstraints {
